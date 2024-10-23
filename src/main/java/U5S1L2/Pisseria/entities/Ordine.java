@@ -3,23 +3,21 @@ package U5S1L2.Pisseria.entities;
 import U5S1L2.Pisseria.enums.StatoOrdine;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@NoArgsConstructor
 @Getter
-@ToString
-@Component
+@ToString(exclude = "costoCoperto")
+@PropertySource("application.properties")
 public class Ordine {
     private long id;
-    @Autowired
     private List<Prodotto> prodottiOrdinati;
-    @Autowired
     private Tavolo tavolo;
-    @Autowired
     private StatoOrdine stato;
     private int nrPersone;
     private LocalDate ordineDt;
@@ -30,7 +28,13 @@ public class Ordine {
     @Value("${ordine.costoCoperto}")
     private int costoCoperto;
 
-    public Ordine(long id, List<Prodotto> prodottiOrdinati, Tavolo tavolo, StatoOrdine stato, int nrPersone, LocalDate ordineDt) {
+    public Ordine(long id,
+                  List<Prodotto> prodottiOrdinati,
+                  Tavolo tavolo,
+                  StatoOrdine stato,
+                  int nrPersone,
+                  LocalDate ordineDt
+    ) {
         this.id = id;
         this.prodottiOrdinati = prodottiOrdinati;
         this.tavolo = tavolo;

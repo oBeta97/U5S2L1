@@ -8,11 +8,12 @@ import U5S1L2.Pisseria.enums.StatoTavolo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class OrdineConfigurator {
+public class PizzeriaConfigurator {
 
     @Bean
     public List<Prodotto> prodottiXOrdine (){
@@ -27,13 +28,21 @@ public class OrdineConfigurator {
     }
 
     @Bean
-    public Tavolo tavoloXOrdine(){
-        return new Tavolo(1,4, StatoTavolo.OCCUPATO);
+    public List<Tavolo> tavoliXPizzeria(){
+        ArrayList<Tavolo> tavoli = new ArrayList<>();
+
+        tavoli.add(new Tavolo(0,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(1,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(2,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(3,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(4,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(5,4,StatoTavolo.LIBERO));
+        tavoli.add(new Tavolo(6,4,StatoTavolo.LIBERO));
+
+        return  tavoli;
     }
 
-    @Bean
-    public StatoOrdine statoOrdineXOrdine (){
-        return StatoOrdine.IN_CORSO;
-    }
+
+
 
 }

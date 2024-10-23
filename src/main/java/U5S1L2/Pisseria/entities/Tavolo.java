@@ -15,4 +15,6 @@ public class Tavolo {
     private long id;
     private int nrMaxPosti;
     private StatoTavolo stato;
+
+
 }

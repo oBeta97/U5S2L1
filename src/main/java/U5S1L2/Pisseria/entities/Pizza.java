@@ -1,5 +1,6 @@
 package U5S1L2.Pisseria.entities;
 
+import U5S1L2.Pisseria.Exceptions.IllegalToppingException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,5 +29,19 @@ public class Pizza extends Prodotto {
         this.toppings.add(new Topping("Mozzarella", 200.0, 0.5));
 
         this.toppings.addAll(toppings);
+    }
+
+    @Override
+    public double getPrice(){
+        return toppings.stream().mapToDouble(Topping::getPrice).sum() + 5.0;
+    }
+
+    public void addTopping(Topping nuovoTopping) throws IllegalToppingException{
+
+        if(nuovoTopping.getName().equalsIgnoreCase("ananas"))
+            throw new IllegalToppingException();
+
+        this.toppings.add(nuovoTopping);
+
     }
 }
